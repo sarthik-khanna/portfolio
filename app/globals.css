@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Keeps anchored sections from landing underneath the fixed navbar,
+   including on direct #hash links and browser back/forward. */
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+body {
+  @apply bg-ink-950 text-mist-100 font-body antialiased;
+}
+
+::selection {
+  background: rgba(124, 92, 252, 0.35);
+  color: #fff;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid #9B87FF;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] shadow-glass;
+  }
+
+  .glass-hover {
+    @apply transition-all duration-300 hover:bg-white/[0.06] hover:border-white/[0.14];
+  }
+
+  .grid-bg {
+    background-image: theme("backgroundImage.grid-lines");
+    background-size: theme("backgroundSize.grid");
+    mask-image: radial-gradient(circle at 50% 20%, black 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(
+      circle at 50% 20%,
+      black 0%,
+      transparent 75%
+    );
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs tracking-[0.25em] uppercase text-cyan-400;
+  }
+
+  .section-shell {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-violet-500 px-6 py-3 font-mono text-sm font-medium text-white shadow-glow-sm transition-all duration-300 hover:bg-violet-400 hover:shadow-glow-md active:scale-[0.97];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.02] px-6 py-3 font-mono text-sm font-medium text-mist-100 backdrop-blur-md transition-all duration-300 hover:border-white/30 hover:bg-white/[0.06] active:scale-[0.97];
+  }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

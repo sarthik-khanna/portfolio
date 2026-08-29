@@ -1,0 +1,152 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowRight, MessageCircle, MapPin } from "lucide-react";
+import { profile, whatsappLinks } from "@/lib/data";
+
+const codeLines = [
+  { indent: 0, text: "const developer = {" },
+  { indent: 1, text: `name: "Sarthik Khanna",` },
+  { indent: 1, text: `role: "Full Stack Developer",` },
+  { indent: 1, text: `stack: ["React", "Next.js", "Node.js", "TS"],` },
+  { indent: 1, text: `base: "Chandigarh, India",` },
+  { indent: 1, text: `shipping: true,` },
+  { indent: 0, text: "};" },
+];
+
+function TypedCode() {
+  const [visibleLines, setVisibleLines] = useState(0);
+  const [charCount, setCharCount] = useState(0);
+
+  useEffect(() => {
+    if (visibleLines >= codeLines.length) return;
+    const currentLine = codeLines[visibleLines].text;
+    if (charCount < currentLine.length) {
+      const t = setTimeout(() => setCharCount((c) => c + 1), 18);
+      return () => clearTimeout(t);
+    }
+    const t = setTimeout(() => {
+      setVisibleLines((l) => l + 1);
+      setCharCount(0);
+    }, 220);
+    return () => clearTimeout(t);
+  }, [charCount, visibleLines]);
+
+  return (
+    <div className="glass w-full max-w-md rounded-2xl p-5 font-mono text-sm leading-relaxed">
+      <div className="mb-3 flex items-center gap-1.5">
+        <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
+        <span className="ml-2 text-xs text-mist-700">profile.ts</span>
+      </div>
+      <div>
+        {codeLines.map((line, i) => {
+          if (i > visibleLines) return null;
+          const text = i === visibleLines ? line.text.slice(0, charCount) : line.text;
+          return (
+            <div key={i} style={{ paddingLeft: `${line.indent * 16}px` }}>
+              <span className="text-mist-300">{text}</span>
+              {i === visibleLines && (
+                <span className="ml-0.5 inline-block h-4 w-[7px] translate-y-0.5 animate-blink bg-cyan-400 align-middle" />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default function Hero() {
+  return (
+    <section
+      id="top"
+      className="relative flex min-h-screen items-center overflow-hidden pt-32 pb-20"
+    >
+      <div className="absolute inset-0 -z-10 bg-glow-violet" />
+      <div className="absolute inset-0 -z-10 bg-glow-cyan" />
+      <div className="grid-bg absolute inset-0 -z-10" />
+
+      <div className="section-shell grid items-center gap-14 lg:grid-cols-[1.1fr,0.9fr]">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5">
+            <MapPin size={13} className="text-cyan-400" />
+            <span className="font-mono text-xs text-mist-300">
+              {profile.location}
+            </span>
+          </div>
+
+          <h1 className="font-display text-4xl font-semibold leading-[1.08] tracking-tight text-mist-100 sm:text-5xl lg:text-6xl">
+            {profile.name}
+          </h1>
+
+          <p className="mt-4 font-mono text-sm text-violet-400 sm:text-base">
+            {profile.title} <span className="text-mist-700">·</span> {profile.stack}
+          </p>
+
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-mist-300 sm:text-lg">
+            {profile.summary}
+          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <a href="#projects" className="btn-primary">
+              View Projects
+              <ArrowRight size={16} />
+            </a>
+            <a href="#contact" className="btn-ghost">
+              Contact Me
+            </a>
+            <a
+              href={whatsappLinks.hero}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-mono text-sm text-mist-300 transition-colors hover:text-cyan-400"
+            >
+              <MessageCircle size={16} />
+              WhatsApp Chat
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
+          className="flex flex-col items-center gap-8"
+        >
+          {/* Photo Slot #1 — Primary profile image with glowing ring */}
+          <div className="relative flex h-56 w-56 items-center justify-center sm:h-64 sm:w-64">
+            <div className="absolute inset-0 animate-spin-slow rounded-full bg-[conic-gradient(from_0deg,#7C5CFC,#38E1C6,#7C5CFC)] opacity-70 blur-md" />
+            <div className="absolute inset-[6px] rounded-full bg-ink-950" />
+            <div className="relative flex h-[calc(100%-18px)] w-[calc(100%-18px)] items-center justify-center overflow-hidden rounded-full border border-white/10 bg-ink-800">
+              { <Image src="/photo1.jpg" 
+              alt={profile.name}
+               fill className="object-cover" />
+                }
+              <span className="font-mono text-xs text-mist-700">
+                profile photo 
+                <br />
+                400×400
+              </span>
+            </div>
+            <div className="absolute -bottom-2 right-2 flex items-center gap-1.5 rounded-full border border-white/10 bg-ink-900/90 px-3 py-1.5 backdrop-blur-md">
+              <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-glow-sm" />
+              <span className="font-mono text-[11px] text-mist-300">
+                available for work
+              </span>
+            </div>
+          </div>
+
+          <TypedCode />
+        </motion.div>
+      </div>
+    </section>
+  );
+}

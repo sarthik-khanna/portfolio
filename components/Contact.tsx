@@ -4,7 +4,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Check, Loader2 } from "lucide-react";
 import { profile } from "@/lib/data";
+import { cn } from "@/lib/utils";
 import SectionHeading from "./SectionHeading";
+import { Button as MovingBorderButton } from "./ui/moving-border";
+import { Label } from "./ui/label";
+import { Input, Textarea } from "./ui/input";
 
 const fields = [
   { name: "name", label: "Name", type: "text" },
@@ -101,50 +105,47 @@ export default function Contact() {
             {fields.map((field) => (
               <div
                 key={field.name}
-                className={field.name === "subject" ? "sm:col-span-2" : ""}
+                className={cn(
+                  "flex flex-col gap-2",
+                  field.name === "subject" ? "sm:col-span-2" : "",
+                )}
               >
-                <label
-                  htmlFor={field.name}
-                  className="mb-2 block font-mono text-xs uppercase tracking-wider text-mist-500"
-                >
-                  {field.label}
-                </label>
-                <input
+                <Label htmlFor={field.name}>{field.label}</Label>
+                <Input
                   id={field.name}
                   name={field.name}
                   type={field.type}
                   required={field.name !== "subject"}
                   disabled={status === "loading"}
-                  className="w-full rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-3 text-sm text-mist-100 outline-none transition-all duration-300 placeholder:text-mist-700 focus:border-violet-400/50 focus:bg-white/[0.04] disabled:opacity-50"
                   placeholder={field.label}
                 />
               </div>
             ))}
 
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="message"
-                className="mb-2 block font-mono text-xs uppercase tracking-wider text-mist-500"
-              >
-                Message
-              </label>
-              <textarea
+            <div className="flex flex-col gap-2 sm:col-span-2">
+              <Label htmlFor="message">Message</Label>
+              <Textarea
                 id="message"
                 name="message"
                 required
                 rows={5}
                 disabled={status === "loading"}
-                className="w-full resize-none rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-3 text-sm text-mist-100 outline-none transition-all duration-300 placeholder:text-mist-700 focus:border-violet-400/50 focus:bg-white/[0.04] disabled:opacity-50"
                 placeholder="Tell me about your project..."
               />
             </div>
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
-            <button
+            <MovingBorderButton
               type="submit"
               disabled={status === "loading"}
-              className="btn-primary justify-center disabled:cursor-not-allowed disabled:opacity-70"
+              duration={2500}
+              borderRadius="9999px"
+              containerClassName={cn(
+                "h-auto w-auto transition-opacity duration-300 disabled:cursor-not-allowed",
+                status === "loading" && "opacity-70",
+              )}
+              className="gap-2 px-6 py-3 font-mono text-sm font-medium active:scale-[0.97]"
             >
               {status === "loading" && (
                 <>
@@ -164,7 +165,7 @@ export default function Contact() {
                   <Send size={15} />
                 </>
               )}
-            </button>
+            </MovingBorderButton>
 
             {status === "success" && (
               <p className="font-mono text-xs text-cyan-400">

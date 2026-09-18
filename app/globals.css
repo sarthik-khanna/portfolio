@@ -48,6 +48,19 @@ body {
     );
   }
 
+  .ripple-mask {
+    mask-image: radial-gradient(
+      ellipse 95% 90% at 50% 25%,
+      black 40%,
+      transparent 95%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 95% 90% at 50% 25%,
+      black 40%,
+      transparent 95%
+    );
+  }
+
   .eyebrow {
     @apply font-mono text-xs tracking-[0.25em] uppercase text-cyan-400;
   }

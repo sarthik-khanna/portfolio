@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { navLinks, whatsappLinks } from "@/lib/data";
+import { WhatsAppIcon } from "./icons/WhatsAppIcon";
 
 // Height reserved for the fixed navbar so scrolled-to sections aren't
 // tucked underneath it. Matches the navbar's own rendered height + margin.
@@ -90,7 +91,7 @@ export default function Navbar() {
             <span className="text-cyan-400">/&gt;</span>
           </a>
 
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-8 lg:flex">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -111,13 +112,13 @@ export default function Navbar() {
               aria-label="Chat on WhatsApp"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-cyan-400 transition-all duration-300 hover:border-cyan-400/40 hover:shadow-glow-sm"
             >
-              <MessageCircle size={16} />
+              <WhatsAppIcon size={16} />
             </a>
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
               aria-expanded={open}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-mist-100 md:hidden"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-mist-100 lg:hidden"
             >
               {open ? <X size={16} /> : <Menu size={16} />}
             </button>
@@ -129,7 +130,7 @@ export default function Navbar() {
         <motion.nav
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="section-shell mt-2 md:hidden"
+          className="section-shell mt-2 lg:hidden"
         >
           <div className="glass flex flex-col gap-1 rounded-2xl p-3">
             {navLinks.map((link) => (

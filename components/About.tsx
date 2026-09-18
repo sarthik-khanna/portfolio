@@ -5,6 +5,58 @@ import { motion } from "framer-motion";
 import { Briefcase, GraduationCap } from "lucide-react";
 import { aboutHighlight, education, experience, profile } from "@/lib/data";
 import SectionHeading from "./SectionHeading";
+import { HoverGlow, HoverGlowGroup, useHoverGlow } from "./ui/card-hover-effect";
+
+function ExperienceCard() {
+  const glow = useHoverGlow(0);
+  return (
+    <div
+      onMouseEnter={glow.onMouseEnter}
+      onMouseLeave={glow.onMouseLeave}
+      className="glass glass-hover relative mt-8 overflow-hidden rounded-2xl p-6"
+    >
+      <HoverGlow isHovered={glow.isHovered} layoutId={glow.layoutId} />
+      <div className="relative z-10 flex items-start gap-4">
+        <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-cyan-400/10 text-cyan-400">
+          <Briefcase size={20} />
+        </div>
+        <div>
+          <p className="font-medium text-mist-100">{experience.role}</p>
+          <p className="mt-1 text-sm text-mist-300">{experience.company}</p>
+          <div className="mt-3 font-mono text-xs text-mist-500">
+            {experience.period}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EducationCard() {
+  const glow = useHoverGlow(1);
+  return (
+    <div
+      onMouseEnter={glow.onMouseEnter}
+      onMouseLeave={glow.onMouseLeave}
+      className="glass glass-hover relative mt-5 overflow-hidden rounded-2xl p-6"
+    >
+      <HoverGlow isHovered={glow.isHovered} layoutId={glow.layoutId} />
+      <div className="relative z-10 flex items-start gap-4">
+        <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-violet-500/10 text-violet-400">
+          <GraduationCap size={20} />
+        </div>
+        <div>
+          <p className="font-medium text-mist-100">{education.degree}</p>
+          <p className="mt-1 text-sm text-mist-300">{education.school}</p>
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 font-mono text-xs text-mist-500">
+            <span>{education.period}</span>
+            <span className="text-cyan-400">CGPA {education.cgpa}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function About() {
   return (
@@ -47,36 +99,10 @@ export default function About() {
             {aboutHighlight}
           </p>
 
-          <div className="glass glass-hover mt-8 rounded-2xl p-6">
-            <div className="flex items-start gap-4">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-cyan-400/10 text-cyan-400">
-                <Briefcase size={20} />
-              </div>
-              <div>
-                <p className="font-medium text-mist-100">{experience.role}</p>
-                <p className="mt-1 text-sm text-mist-300">{experience.company}</p>
-                <div className="mt-3 font-mono text-xs text-mist-500">
-                  {experience.period}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="glass glass-hover mt-5 rounded-2xl p-6">
-            <div className="flex items-start gap-4">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-violet-500/10 text-violet-400">
-                <GraduationCap size={20} />
-              </div>
-              <div>
-                <p className="font-medium text-mist-100">{education.degree}</p>
-                <p className="mt-1 text-sm text-mist-300">{education.school}</p>
-                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 font-mono text-xs text-mist-500">
-                  <span>{education.period}</span>
-                  <span className="text-cyan-400">CGPA {education.cgpa}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <HoverGlowGroup>
+            <ExperienceCard />
+            <EducationCard />
+          </HoverGlowGroup>
 
           <p className="mt-6 font-mono text-xs text-mist-700">
             {profile.name} — {profile.location}

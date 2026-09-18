@@ -66,11 +66,17 @@ const config: Config = {
           from: { transform: "rotate(0deg)" },
           to: { transform: "rotate(360deg)" },
         },
+        "cell-ripple": {
+          "0%, 100%": { opacity: "0.4" },
+          "50%": { opacity: "0.8" },
+        },
       },
       animation: {
         blink: "blink 1s step-start infinite",
         float: "float 6s ease-in-out infinite",
         "spin-slow": "spin-slow 14s linear infinite",
+        "cell-ripple":
+          "cell-ripple var(--duration, 200ms) ease-out var(--delay, 0ms) 1",
       },
     },
   },

@@ -1,10 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, MapPin } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, MapPin } from "lucide-react";
 import { profile, whatsappLinks } from "@/lib/data";
+import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
+import { FlipWords } from "@/components/ui/flip-words";
+import { NoiseBackground } from "@/components/ui/noise-background";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+
+const stackWords = profile.stack.split(", ");
 
 const codeLines = [
   { indent: 0, text: "const developer = {" },
@@ -61,16 +67,29 @@ function TypedCode() {
 }
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const glowVioletY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
+  const glowCyanY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
     <section
+      ref={sectionRef}
       id="top"
       className="relative flex min-h-screen items-center overflow-hidden pt-32 pb-20"
     >
-      <div className="absolute inset-0 -z-10 bg-glow-violet" />
-      <div className="absolute inset-0 -z-10 bg-glow-cyan" />
-      <div className="grid-bg absolute inset-0 -z-10" />
+      <motion.div style={{ y: glowVioletY }} className="absolute inset-0 -z-10 bg-glow-violet" />
+      <motion.div style={{ y: glowCyanY }} className="absolute inset-0 -z-10 bg-glow-cyan" />
+      <BackgroundRippleEffect className="-z-10" cellSize={64} />
 
-      <div className="section-shell grid items-center gap-14 lg:grid-cols-[1.1fr,0.9fr]">
+      <motion.div
+        style={{ opacity: contentOpacity }}
+        className="section-shell grid items-center gap-14 lg:grid-cols-[1.1fr,0.9fr]"
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -83,12 +102,18 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="font-display text-4xl font-semibold leading-[1.08] tracking-tight text-mist-100 sm:text-5xl lg:text-6xl">
+          <h1 className="font-display text-4xl font-bold leading-[1.08] tracking-tight text-mist-100 sm:text-5xl lg:text-6xl">
             {profile.name}
           </h1>
 
           <p className="mt-4 font-mono text-sm text-violet-400 sm:text-base">
-            {profile.title} <span className="text-mist-700">·</span> {profile.stack}
+            <span className="font-bold">{profile.title}</span>{" "}
+            <span className="text-mist-700">·</span>{" "}
+            <FlipWords
+              words={stackWords}
+              duration={2200}
+              className="font-bold text-cyan-400"
+            />
           </p>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-mist-300 sm:text-lg">
@@ -96,20 +121,40 @@ export default function Hero() {
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a href="#projects" className="btn-primary">
-              View Projects
-              <ArrowRight size={16} />
-            </a>
-            <a href="#contact" className="btn-ghost">
-              Contact Me
-            </a>
+            <NoiseBackground
+              containerClassName="rounded-full p-0"
+              gradientColors={["#7C5CFC", "#38E1C6", "#9B87FF"]}
+              noiseIntensity={0.12}
+              speed={0.15}
+            >
+              <a
+                href="#projects"
+                className="flex items-center gap-2 rounded-full px-6 py-3 font-mono text-sm font-medium text-white transition-transform duration-300 active:scale-[0.97]"
+              >
+                View Projects
+                <ArrowRight size={16} />
+              </a>
+            </NoiseBackground>
+            <NoiseBackground
+              containerClassName="rounded-full p-0"
+              gradientColors={["#38E1C6", "#7C5CFC", "#9B87FF"]}
+              noiseIntensity={0.12}
+              speed={0.12}
+            >
+              <a
+                href="#contact"
+                className="flex items-center gap-2 rounded-full px-6 py-3 font-mono text-sm font-medium text-mist-100 transition-transform duration-300 active:scale-[0.97]"
+              >
+                Contact Me
+              </a>
+            </NoiseBackground>
             <a
               href={whatsappLinks.hero}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-mono text-sm text-mist-300 transition-colors hover:text-cyan-400"
             >
-              <MessageCircle size={16} />
+              <WhatsAppIcon size={16} />
               WhatsApp Chat
             </a>
           </div>
@@ -146,7 +191,7 @@ export default function Hero() {
 
           <TypedCode />
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

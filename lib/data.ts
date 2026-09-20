@@ -22,7 +22,33 @@ export const whatsappLinks = {
   )}`,
 };
 
+export const socials = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/sarthik-khanna-05650a276/",
+  },
+  { label: "GitHub", href: "https://github.com/sarthik-khanna" },
+  { label: "Email", href: `mailto:${profile.email}` },
+];
+
+// Shown in the scrolling "Working with" strip under the hero
+export const marqueeTech = [
+  "React.js",
+  "Next.js",
+  "Node.js",
+  "TypeScript",
+  "Tailwind CSS",
+  "Python",
+  "MongoDB",
+  "PostgreSQL",
+  "Firebase",
+  "Gemini API",
+  "Playwright",
+  "AWS",
+];
+
 export const navLinks = [
+  { label: "Home", href: "#top" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },

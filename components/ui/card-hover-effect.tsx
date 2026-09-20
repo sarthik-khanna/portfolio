@@ -59,7 +59,7 @@ export function HoverGlow({
       {isHovered && (
         <motion.span
           layoutId={`hover-glow-${layoutId}`}
-          className="absolute inset-0 z-0 block rounded-[inherit] bg-gradient-to-br from-violet-500/25 via-violet-500/[0.06] to-cyan-400/20 shadow-glow-sm"
+          className="absolute inset-0 z-0 block rounded-[inherit] bg-gradient-to-br from-cyan-400/20 via-cyan-400/[0.05] to-sky-500/15"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 0.15 } }}
           exit={{ opacity: 0, transition: { duration: 0.15, delay: 0.1 } }}

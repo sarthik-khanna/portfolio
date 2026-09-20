@@ -6,7 +6,6 @@ import { Mail, Phone, MapPin, Send, Check, Loader2 } from "lucide-react";
 import { profile } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import SectionHeading from "./SectionHeading";
-import { Button as MovingBorderButton } from "./ui/moving-border";
 import { Label } from "./ui/label";
 import { Input, Textarea } from "./ui/input";
 
@@ -54,18 +53,18 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="section-shell py-28">
-      <SectionHeading eyebrow="05 · Contact" title="Let's build something" />
+    <section id="contact" className="panel p-6 md:p-8">
+      <SectionHeading pill="Get in Touch" title="Let's Build Something" />
 
-      <div className="mt-12 grid gap-8 lg:grid-cols-[0.9fr,1.1fr]">
+      <div className="mt-8 grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex flex-col gap-4"
+          className="flex flex-col gap-3"
         >
-          <p className="max-w-sm text-mist-300">
+          <p className="mb-1 max-w-sm text-sm leading-relaxed text-mist-300">
             Have a project in mind, or just want to say hi? My inbox — and my
             WhatsApp — are open.
           </p>
@@ -76,11 +75,11 @@ export default function Contact() {
             { icon: MapPin, label: profile.location, href: undefined },
           ].map(({ icon: Icon, label, href }) => {
             const content = (
-              <div className="glass glass-hover flex items-center gap-4 rounded-2xl p-5">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-violet-500/10 text-violet-400">
+              <div className="tile flex items-center gap-4 p-4">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-cyan-400/10 text-cyan-400">
                   <Icon size={17} />
                 </div>
-                <span className="font-mono text-sm text-mist-200">{label}</span>
+                <span className="break-all font-mono text-sm text-mist-100">{label}</span>
               </div>
             );
             return href ? (
@@ -99,7 +98,7 @@ export default function Contact() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           onSubmit={handleSubmit}
-          className="glass rounded-2xl p-7"
+          className="tile p-6"
         >
           <div className="grid gap-5 sm:grid-cols-2">
             {fields.map((field) => (
@@ -136,16 +135,13 @@ export default function Contact() {
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
-            <MovingBorderButton
+            <button
               type="submit"
               disabled={status === "loading"}
-              duration={2500}
-              borderRadius="9999px"
-              containerClassName={cn(
-                "h-auto w-auto transition-opacity duration-300 disabled:cursor-not-allowed",
+              className={cn(
+                "btn-cyan disabled:cursor-not-allowed",
                 status === "loading" && "opacity-70",
               )}
-              className="gap-2 px-6 py-3 font-mono text-sm font-medium active:scale-[0.97]"
             >
               {status === "loading" && (
                 <>
@@ -165,7 +161,7 @@ export default function Contact() {
                   <Send size={15} />
                 </>
               )}
-            </MovingBorderButton>
+            </button>
 
             {status === "success" && (
               <p className="font-mono text-xs text-cyan-400">

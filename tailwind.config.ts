@@ -9,27 +9,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Deep navy surfaces: 950 = frame, 900 = panels, 800 = tiles, 700 = active/hover
         ink: {
-          950: "#07080C",
-          900: "#0A0B10",
-          800: "#12141C",
-          700: "#1B1E2A",
+          950: "#050A14",
+          900: "#08111F",
+          800: "#0D1A2E",
+          700: "#15263F",
         },
         mist: {
-          100: "#E9EAF2",
-          300: "#B7BACB",
-          500: "#8B8FA3",
-          700: "#5B5F72",
-        },
-        violet: {
-          400: "#9B87FF",
-          500: "#7C5CFC",
-          600: "#6242E8",
+          100: "#EAF1FB",
+          300: "#B4C2D6",
+          500: "#8092AB",
+          700: "#55657D",
         },
         cyan: {
-          300: "#7CF2DA",
-          400: "#38E1C6",
-          500: "#1EC4AB",
+          300: "#8CEBFF",
+          400: "#3BD8F7",
+          500: "#1FB6D6",
         },
       },
       fontFamily: {
@@ -37,21 +33,10 @@ const config: Config = {
         body: ["var(--font-space-grotesk)", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "monospace"],
       },
-      backgroundImage: {
-        "grid-lines":
-          "linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px)",
-        "glow-violet":
-          "radial-gradient(circle at 50% 0%, rgba(124,92,252,0.35), transparent 60%)",
-        "glow-cyan":
-          "radial-gradient(circle at 50% 100%, rgba(56,225,198,0.18), transparent 55%)",
-      },
-      backgroundSize: {
-        grid: "44px 44px",
-      },
       boxShadow: {
         glass: "0 8px 32px rgba(0,0,0,0.35)",
-        "glow-sm": "0 0 24px rgba(124,92,252,0.35)",
-        "glow-md": "0 0 48px rgba(124,92,252,0.28)",
+        "glow-sm": "0 0 24px rgba(59,216,247,0.3)",
+        "glow-md": "0 0 48px rgba(59,216,247,0.25)",
       },
       keyframes: {
         blink: {
@@ -70,6 +55,10 @@ const config: Config = {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "0.8" },
         },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         blink: "blink 1s step-start infinite",
@@ -77,6 +66,7 @@ const config: Config = {
         "spin-slow": "spin-slow 14s linear infinite",
         "cell-ripple":
           "cell-ripple var(--duration, 200ms) ease-out var(--delay, 0ms) 1",
+        marquee: "marquee 32s linear infinite",
       },
     },
   },

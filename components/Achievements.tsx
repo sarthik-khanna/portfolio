@@ -10,17 +10,12 @@ const icons = [Trophy, Medal, BadgeCheck, Award];
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.08 } },
 };
 
 const card = {
-  hidden: { opacity: 0, y: 24, x: -8 },
-  show: {
-    opacity: 1,
-    y: 0,
-    x: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
 function AchievementCard({
@@ -37,20 +32,17 @@ function AchievementCard({
   return (
     <motion.div
       variants={card}
-      whileHover={{ y: -4 }}
       onMouseEnter={glow.onMouseEnter}
       onMouseLeave={glow.onMouseLeave}
-      className="glass glass-hover relative flex items-start gap-4 overflow-hidden rounded-2xl p-6"
+      className="tile flex items-start gap-4 overflow-hidden p-5"
     >
       <HoverGlow isHovered={glow.isHovered} layoutId={glow.layoutId} />
       <div className="relative z-10 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-cyan-400/10 text-cyan-400">
         <Icon size={19} />
       </div>
       <div className="relative z-10">
-        <div className="flex items-center gap-3">
-          <h3 className="font-display text-base font-semibold text-mist-100">
-            {item.title}
-          </h3>
+        <div className="flex flex-wrap items-center gap-x-3">
+          <h3 className="font-display text-base font-semibold text-mist-100">{item.title}</h3>
           <span className="font-mono text-[11px] text-mist-700">{item.year}</span>
         </div>
         <p className="mt-1.5 text-sm leading-relaxed text-mist-300">{item.detail}</p>
@@ -61,19 +53,24 @@ function AchievementCard({
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="section-shell py-28">
-      <SectionHeading eyebrow="04 · Achievements" title="Wins along the way" />
+    <section id="achievements" className="panel p-6 md:p-8">
+      <SectionHeading pill="Milestones" title="Wins Along the Way" />
 
       <motion.div
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-60px" }}
         variants={container}
-        className="mt-12 grid gap-5 sm:grid-cols-2"
+        className="mt-8 grid gap-4 sm:grid-cols-2"
       >
         <HoverGlowGroup>
           {achievements.map((item, i) => (
-            <AchievementCard key={item.title} item={item} index={i} Icon={icons[i % icons.length]} />
+            <AchievementCard
+              key={item.title}
+              item={item}
+              index={i}
+              Icon={icons[i % icons.length]}
+            />
           ))}
         </HoverGlowGroup>
       </motion.div>

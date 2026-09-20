@@ -1,11 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect x="1" y="1" width="62" height="62" rx="14" fill="#07080C" stroke="#7C5CFC" stroke-width="2" />
   <text
     x="32"
     y="33"
     text-anchor="middle"
     dominant-baseline="central"
     font-family="ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace"
-    font-size="44"
+    font-size="34"
     font-weight="700"
     letter-spacing="-2"
     fill="#FFFFFF"

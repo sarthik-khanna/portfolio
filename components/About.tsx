@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { motion } from "framer-motion";
 import { Briefcase, GraduationCap } from "lucide-react";
-import { aboutHighlight, education, experience, profile } from "@/lib/data";
+import { aboutParagraphs, education, experience, profile } from "@/lib/data";
 import SectionHeading from "./SectionHeading";
 import { HoverGlow, HoverGlowGroup, useHoverGlow } from "./ui/card-hover-effect";
 
@@ -95,9 +95,11 @@ export default function About() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         >
-          <p className="text-lg leading-relaxed text-mist-300">
-            {aboutHighlight}
-          </p>
+          <div className="space-y-4 text-base leading-relaxed text-mist-300 sm:text-lg">
+            {aboutParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
 
           <HoverGlowGroup>
             <ExperienceCard />

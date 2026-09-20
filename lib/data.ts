@@ -8,6 +8,8 @@ export const profile = {
   email: "sarthikkhanna28@gmail.com",
   phone: "+91 9855328428",
   whatsapp: "919855328428",
+  resumeUrl: "/Resume.pdf",
+  resumeFileName: "Sarthik-Khanna-Resume.pdf",
 };
 
 export const whatsappLinks = {
@@ -41,8 +43,11 @@ export const education = {
   cgpa: "7.0 / 10",
 };
 
-export const aboutHighlight =
-  "Final-year student who has independently shipped complete platforms end-to-end — including database design, authentication, RESTful API design, and AI-powered features.";
+export const aboutParagraphs = [
+  "I'm a Full Stack Developer at Needle Ads Technology and a final-year B.E. student in AI & Data Science. I like owning a product end-to-end: database design, authentication, REST APIs, and the interface people actually use.",
+  "Most of my recent work mixes web apps with AI and automation. I built Dost AI, a Gemini-powered suite of four AI tools on React, Node.js, Neon Postgres and Clerk auth, and Code-X, a coding practice platform with its own code execution engine, hidden test-case grading and a 4-level AI mentor whose hints are gated on the server. I also shipped FastMyPC, a PC performance and tech service site, in Next.js.",
+  "My latest build steps outside the browser: Truecaller Extractor, a Windows desktop app in Python that automates number lookups with Playwright and exports the results to CSV and HTML. It has a persistent one-time sign-in, bulk search from Excel or CSV files, and rate-limiting safeguards, and it ships as a standalone .exe.",
+];
 
 export type SkillGroup = {
   label: string;
@@ -105,14 +110,6 @@ export type Project = {
 export const projects: Project[] = [
   {
     index: "01",
-    name: "Radio Bill Pay",
-    description:
-      "Production-ready web platform for streamlined utility and bill payment services.",
-    tech: ["Next.js", "React.js", "Payments"],
-    liveUrl: "https://radiobillpay.com",
-  },
-  {
-    index: "02",
     name: "Dost AI",
     description:
       "Full-stack AI platform integrating the Gemini API to power four distinct AI tools: image generation, blog creation, object removal, and article generation.",
@@ -120,7 +117,7 @@ export const projects: Project[] = [
     liveUrl: "https://dost-ai-three.vercel.app/",
   },
   {
-    index: "03",
+    index: "02",
     name: "FastMyPC",
     description:
       "Performance optimization and tech service platform web application.",
@@ -128,7 +125,7 @@ export const projects: Project[] = [
     liveUrl: "https://fastmypc.com",
   },
   {
-    index: "04",
+    index: "03",
     name: "Code-X",
     description:
       "Full-stack coding practice platform with a custom code execution engine, hidden test case grading, and a 4-level AI mentor with server-side hint-progression gating.",
@@ -139,6 +136,20 @@ export const projects: Project[] = [
       "Firebase",
       "Gemini API",
       "Monaco Editor",
+    ],
+  },
+  {
+    index: "04",
+    name: "Truecaller Extractor",
+    description:
+      "Windows desktop app that looks up phone numbers on your own Truecaller account, one at a time or from an Excel/CSV list, and saves the name, email and location to a CSV plus the result page as HTML. Built with Playwright browser automation, a one-time OTP sign-in that persists between sessions, number normalisation for +91 formats, and built-in safeguards: randomised delays, a daily search limit and status detection for hidden, signed-out and human-check results. Packaged as a standalone .exe.",
+    tech: [
+      "Python",
+      "Tkinter",
+      "Playwright",
+      "BeautifulSoup",
+      "phonenumbers",
+      "PyInstaller",
     ],
   },
 ];

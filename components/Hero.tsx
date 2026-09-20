@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, Download, MapPin } from "lucide-react";
 import { profile, whatsappLinks } from "@/lib/data";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { FlipWords } from "@/components/ui/flip-words";
@@ -148,6 +148,14 @@ export default function Hero() {
                 Contact Me
               </a>
             </NoiseBackground>
+            <a
+              href={profile.resumeUrl}
+              download={profile.resumeFileName}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 font-mono text-sm font-medium text-mist-100 transition-all duration-300 hover:border-cyan-400/40 hover:text-cyan-400 hover:shadow-glow-sm active:scale-[0.97]"
+            >
+              <Download size={16} />
+              Download Resume
+            </a>
             <a
               href={whatsappLinks.hero}
               target="_blank"

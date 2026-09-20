@@ -36,6 +36,17 @@ export const metadata: Metadata = {
     "Next.js developer",
     "Node.js developer",
   ],
+  // Explicit <link rel="icon"> tags so Google and browsers find the SK logo;
+  // the .ico lives in /public and is no longer auto-linked from /app.
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", type: "image/png", sizes: "192x192" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
   authors: [{ name: "Sarthik Khanna", url: SITE_URL }],
   creator: "Sarthik Khanna",
   alternates: {

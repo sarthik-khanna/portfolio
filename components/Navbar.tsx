@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { navLinks, whatsappLinks } from "@/lib/data";
+import { Download, Menu, X } from "lucide-react";
+import { navLinks, profile, whatsappLinks } from "@/lib/data";
 import { WhatsAppIcon } from "./icons/WhatsAppIcon";
 
 // Height reserved for the fixed navbar so scrolled-to sections aren't
@@ -105,6 +105,14 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <a
+              href={profile.resumeUrl}
+              download={profile.resumeFileName}
+              className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 font-mono text-xs text-mist-100 transition-all duration-300 hover:border-cyan-400/40 hover:text-cyan-400 hover:shadow-glow-sm sm:inline-flex"
+            >
+              <Download size={14} />
+              Resume
+            </a>
             <a
               href={whatsappLinks.nav}
               target="_blank"

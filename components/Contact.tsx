@@ -53,10 +53,14 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="panel p-6 md:p-8">
-      <SectionHeading pill="Get in Touch" title="Let's Build Something" />
+    <section id="contact" className="bg-ink-950 py-20 md:py-24">
+      <div className="mx-auto max-w-4xl px-5 md:px-8">
+      <SectionHeading
+        title="Let's Build Something"
+        subtitle="Have a project in mind, or just want to say hi? My inbox and my WhatsApp are open."
+      />
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
+      <div className="mt-10 grid gap-6 lg:grid-cols-[0.85fr,1.15fr]">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -64,22 +68,17 @@ export default function Contact() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="flex flex-col gap-3"
         >
-          <p className="mb-1 max-w-sm text-sm leading-relaxed text-mist-300">
-            Have a project in mind, or just want to say hi? My inbox — and my
-            WhatsApp — are open.
-          </p>
-
           {[
             { icon: Mail, label: profile.email, href: `mailto:${profile.email}` },
             { icon: Phone, label: profile.phone, href: `tel:${profile.phone}` },
             { icon: MapPin, label: profile.location, href: undefined },
           ].map(({ icon: Icon, label, href }) => {
             const content = (
-              <div className="tile flex items-center gap-4 p-4">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-cyan-400/10 text-cyan-400">
+              <div className="card flex items-center gap-4 p-4 transition-transform duration-300 hover:-translate-y-0.5">
+                <div className="border-gradient flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-rose">
                   <Icon size={17} />
                 </div>
-                <span className="break-all font-mono text-sm text-mist-100">{label}</span>
+                <span className="break-all text-sm text-mist-100">{label}</span>
               </div>
             );
             return href ? (
@@ -98,7 +97,7 @@ export default function Contact() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           onSubmit={handleSubmit}
-          className="tile p-6"
+          className="card p-6"
         >
           <div className="grid gap-5 sm:grid-cols-2">
             {fields.map((field) => (
@@ -139,7 +138,7 @@ export default function Contact() {
               type="submit"
               disabled={status === "loading"}
               className={cn(
-                "btn-cyan disabled:cursor-not-allowed",
+                "btn-gradient disabled:cursor-not-allowed",
                 status === "loading" && "opacity-70",
               )}
             >
@@ -164,15 +163,16 @@ export default function Contact() {
             </button>
 
             {status === "success" && (
-              <p className="font-mono text-xs text-cyan-400">
+              <p className="text-xs text-rose">
                 Thanks — I'll get back to you soon.
               </p>
             )}
             {status === "error" && (
-              <p className="font-mono text-xs text-red-400">{errorMsg}</p>
+              <p className="text-xs text-red-400">{errorMsg}</p>
             )}
           </div>
         </motion.form>
+      </div>
       </div>
     </section>
   );

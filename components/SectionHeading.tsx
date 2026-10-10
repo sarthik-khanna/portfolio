@@ -2,16 +2,13 @@
 
 import { motion } from "framer-motion";
 
-/**
- * Small pill label on the left, big title on the right, like the reference
- * layout's "● Biography ........ My Core Services" rows.
- */
+/** Centered gradient title with a one-line subtitle, as in "My Services". */
 export default function SectionHeading({
-  pill,
   title,
+  subtitle,
 }: {
-  pill: string;
-  title?: string;
+  title: string;
+  subtitle?: string;
 }) {
   return (
     <motion.div
@@ -19,16 +16,13 @@ export default function SectionHeading({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="flex items-start justify-between gap-6"
+      className="mx-auto max-w-2xl text-center"
     >
-      <span className="pill">
-        <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
-        {pill}
-      </span>
-      {title && (
-        <h2 className="text-right font-display text-3xl font-medium tracking-tight text-mist-100 md:text-4xl">
-          {title}
-        </h2>
+      <h2 className="text-gradient inline-block font-display text-3xl font-bold tracking-tight md:text-[2.5rem] md:leading-tight">
+        {title}
+      </h2>
+      {subtitle && (
+        <p className="mt-3 text-sm leading-relaxed text-mist-100/90 md:text-base">{subtitle}</p>
       )}
     </motion.div>
   );

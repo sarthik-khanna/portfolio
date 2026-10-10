@@ -12,10 +12,10 @@ import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
  * dropped the light/dark `neutral`/`zinc`/`gray` palette and the
  * `shadow-input` utility (not defined in this project's Tailwind v3
  * config — Aceternity's own site defines it separately) for this site's
- * ink surface + violet glow, and added a matching `Textarea` for the
+ * ink surface + orchid glow, and added a matching `Textarea` for the
  * Contact form's message field, which the original doesn't cover.
  */
-const GLOW_COLOR = "#3BD8F7";
+const GLOW_COLOR = "#BE79CF";
 const RADIUS = 100;
 
 function useGlowHandlers() {
@@ -40,7 +40,7 @@ function useGlowHandlers() {
 }
 
 const fieldClassName =
-  "flex w-full rounded-[10px] border border-white/[0.08] bg-ink-900/80 px-4 py-2 text-sm text-mist-100 outline-none transition duration-300 placeholder:text-mist-700 group-hover/input:border-transparent focus-visible:ring-2 focus-visible:ring-cyan-400/50 disabled:cursor-not-allowed disabled:opacity-50";
+  "flex w-full rounded-[10px] border border-white/[0.08] bg-ink-900 px-4 py-2 text-sm text-mist-100 outline-none transition duration-300 placeholder:text-mist-700 group-hover/input:border-transparent focus-visible:ring-2 focus-visible:ring-orchid/50 disabled:cursor-not-allowed disabled:opacity-50";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 

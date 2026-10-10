@@ -9,64 +9,53 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Deep navy surfaces: 950 = frame, 900 = panels, 800 = tiles, 700 = active/hover
+        // Near-black navy surfaces: 950 = page, 900 = cards, 800 = raised, 700 = hover
         ink: {
-          950: "#050A14",
-          900: "#08111F",
-          800: "#0D1A2E",
-          700: "#15263F",
+          950: "#060A13",
+          900: "#0A0F1B",
+          800: "#111626",
+          700: "#1B1F33",
+        },
+        // Purple-tinted card surface used by the skill tiles
+        plum: {
+          900: "#140F22",
+          800: "#1C1630",
+          700: "#2A1F42",
         },
         mist: {
-          100: "#EAF1FB",
-          300: "#B4C2D6",
-          500: "#8092AB",
-          700: "#55657D",
+          100: "#F1EEF6",
+          300: "#C3BED0",
+          500: "#8E88A0",
+          700: "#5E5872",
         },
-        cyan: {
-          300: "#8CEBFF",
-          400: "#3BD8F7",
-          500: "#1FB6D6",
-        },
+        // The template's warm-to-cool gradient: peach -> rose -> orchid
+        peach: "#EBC1A2",
+        rose: "#D894BA",
+        orchid: "#BE79CF",
       },
       fontFamily: {
-        display: ["var(--font-space-grotesk)", "sans-serif"],
-        body: ["var(--font-space-grotesk)", "sans-serif"],
-        mono: ["var(--font-jetbrains-mono)", "monospace"],
+        display: ["var(--font-inter)", "sans-serif"],
+        body: ["var(--font-inter)", "sans-serif"],
       },
       boxShadow: {
         glass: "0 8px 32px rgba(0,0,0,0.35)",
-        "glow-sm": "0 0 24px rgba(59,216,247,0.3)",
-        "glow-md": "0 0 48px rgba(59,216,247,0.25)",
+        "glow-sm": "0 0 24px rgba(216,148,186,0.3)",
+        "glow-md": "0 0 48px rgba(190,121,207,0.3)",
       },
       keyframes: {
-        blink: {
-          "0%, 49%": { opacity: "1" },
-          "50%, 100%": { opacity: "0" },
-        },
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-14px)" },
-        },
-        "spin-slow": {
-          from: { transform: "rotate(0deg)" },
-          to: { transform: "rotate(360deg)" },
+          "50%": { transform: "translateY(-8px)" },
         },
         "cell-ripple": {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "0.8" },
         },
-        marquee: {
-          from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-50%)" },
-        },
       },
       animation: {
-        blink: "blink 1s step-start infinite",
         float: "float 6s ease-in-out infinite",
-        "spin-slow": "spin-slow 14s linear infinite",
         "cell-ripple":
           "cell-ripple var(--duration, 200ms) ease-out var(--delay, 0ms) 1",
-        marquee: "marquee 32s linear infinite",
       },
     },
   },

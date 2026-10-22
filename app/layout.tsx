@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   ],
   // Icons come from the /app file convention (favicon.ico, icon.png,
   // apple-icon.png) — all generated from public/logo.png.
+  // Share images come from app/opengraph-image.tsx and app/twitter-image.tsx.
   authors: [{ name: "Sarthik Khanna", url: SITE_URL }],
   creator: "Sarthik Khanna",
   alternates: {
@@ -43,14 +44,12 @@ export const metadata: Metadata = {
     title: "Sarthik Khanna | Full Stack Developer",
     description:
       "Full Stack Developer specializing in React, Next.js, Node.js and AI-integrated web applications.",
-    images: [{ url: "/photo1.jpg", width: 1200, height: 630, alt: profile.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sarthik Khanna | Full Stack Developer",
     description:
       "Full Stack Developer specializing in React, Next.js, Node.js and AI-integrated web applications.",
-    images: ["/photo1.jpg"],
   },
   robots: {
     index: true,

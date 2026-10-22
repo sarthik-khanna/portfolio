@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import { profile } from "@/lib/data";
 import "./globals.css";
 
@@ -106,6 +107,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         {children}
+        <Script
+          src="https://api.webchat123.com/widget.js"
+          data-pk="pk_live_263aada44d9aa47151d73c7465de3459"
+          data-server="https://api.webchat123.com"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
